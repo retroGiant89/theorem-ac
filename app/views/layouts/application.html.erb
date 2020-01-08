@@ -16,6 +16,13 @@
   <% else %>
         <%= link_to('Login', new_admin_session_path) %>
   <% end %>
+  <nav>
+    <ul>
+      <li><%= link_to 'Devices', devices_path %></li>
+      <li><%= link_to 'Admins', admins_path %></li>
+      <li><%= link_to 'Invite Admin', new_admin_invitation_path %></li>
+    </ul>
+  </nav>
     <%= yield %>
   </body>
 </html>
