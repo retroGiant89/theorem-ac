@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_08_174705) do
+ActiveRecord::Schema.define(version: 2020_01_09_152852) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -51,4 +51,17 @@ ActiveRecord::Schema.define(version: 2020_01_08_174705) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "statuses", force: :cascade do |t|
+    t.float "temperature"
+    t.float "air_humidity"
+    t.integer "carbon_monoxide"
+    t.string "health_status"
+    t.datetime "collected_at"
+    t.integer "device_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["device_id"], name: "index_statuses_on_device_id"
+  end
+
+  add_foreign_key "statuses", "devices"
 end

@@ -15,5 +15,29 @@
   <%= @device.firmware_version %>
 </p>
 
+<table>
+  <thead>
+  <tr>
+    <th>Temperature</th>
+    <th>Air humidity</th>
+    <th>Carbon monoxide</th>
+    <th>Health status</th>
+    <th>Collected at</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @device.statuses.each do |status| %>
+      <tr>
+        <td><%= status.temperature %></td>
+        <td><%= status.air_humidity %></td>
+        <td><%= status.carbon_monoxide %></td>
+        <td><%= status.health_status %></td>
+        <td><%= status.collected_at %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
 <%= link_to 'Edit', edit_device_path(@device) %> |
 <%= link_to 'Back', devices_path %>

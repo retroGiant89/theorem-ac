@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  temperature: 1.5
+  air_humidity: 1.5
+  carbon_monoxide: 1
+  health_status: MyString
+  collected_at: 2020-01-09 09:28:52
+  device: one
+
+two:
+  temperature: 1.5
+  air_humidity: 1.5
+  carbon_monoxide: 1
+  health_status: MyString
+  collected_at: 2020-01-09 09:28:52
+  device: two

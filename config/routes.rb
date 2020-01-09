@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :statuses
   devise_for :admins
   resources :devices
   resources :admins, except: [:new, :create]

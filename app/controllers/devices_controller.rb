@@ -1,5 +1,6 @@
 class DevicesController < ApplicationController
-  before_action :authenticate_admin!
+  before_action :authenticate_admin!, except: :create
+  skip_before_action :verify_authenticity_token, only: :create
 
   before_action :set_device, only: [:show, :edit, :update, :destroy]
 
