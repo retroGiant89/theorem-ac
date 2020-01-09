@@ -7,7 +7,12 @@ class DevicesController < ApplicationController
   # GET /devices
   # GET /devices.json
   def index
-    @devices = Device.all
+    serial_number = params[:serial_number]
+    if serial_number.present?
+      @devices = Device.where('serial_number LIKE ?', "%#{serial_number}%")
+    else
+      @devices = Device.all
+    end
   end
 
   # GET /devices/1

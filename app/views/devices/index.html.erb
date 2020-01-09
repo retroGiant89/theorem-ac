@@ -2,6 +2,13 @@
 
 <h1>Devices</h1>
 
+<%= form_tag(devices_path, method: :get) do %>
+    <div>
+      <%= label_tag(:serial_number) %>
+    <%= text_field_tag(:serial_number) %>
+    </div>
+    <%= submit_tag 'Search' %>
+<% end %>
 <table>
   <thead>
     <tr>
