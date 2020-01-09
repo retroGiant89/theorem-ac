@@ -18,8 +18,23 @@ class DevicesController < ApplicationController
   # GET /devices/1
   # GET /devices/1.json
   def show
-    @xmin = Date.today.beginning_of_day
-    @xmax = Date.today.end_of_day
+    time_range = params[:time_range]
+    today = Date.today
+    case(time_range)
+      when 'YEAR'
+        @min_date = today.beginning_of_year
+        @max_date = today.end_of_year
+      when 'MONTH'
+        @min_date = today.beginning_of_month
+        @max_date = today.end_of_month
+      when 'WEEK'
+        @min_date = today.beginning_of_week
+        @max_date = today.end_of_week
+      else
+        @min_date = today.beginning_of_day
+        @max_date = today.end_of_day
+    end
+    @statuses = @device.statuses.where(collected_at: @min_date..@max_date)
   end
 
   # GET /devices/new

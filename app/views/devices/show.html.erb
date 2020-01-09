@@ -14,12 +14,13 @@
   <strong>Firmware version:</strong>
   <%= @device.firmware_version %>
 </p>
+Display Current: <%= link_to 'Year', @device, {time_range: 'YEAR'} %>
 <h2>Temperature</h2>
-<%= line_chart @device.statuses.pluck(:collected_at, :temperature), xmin: @xmin, xmax: @xmax, xtitle: 'Time', ytitle: 'Temperature (in Celcius)' %>
+<%= line_chart @statuses.pluck(:collected_at, :temperature), xmin: @min_date, xmax: @max_date, xtitle: 'Time', ytitle: 'Temperature (in Celcius)' %>
 <h2>Air Humidity</h2>
-<%= line_chart @device.statuses.pluck(:collected_at, :air_humidity), xmin: @xmin, xmax: @xmax, xtitle: 'Time', ytitle: 'Air Humidity Percentage' %>
+<%= line_chart @statuses.pluck(:collected_at, :air_humidity), xmin: @min_date, xmax: @max_date, xtitle: 'Time', ytitle: 'Air Humidity Percentage' %>
 <h2>Carbon Monoxide</h2>
-<%= line_chart @device.statuses.pluck(:collected_at, :carbon_monoxide), xmin: @xmin, xmax: @xmax, xtitle: 'Time', ytitle: 'Carbon Monoxide Level' %>
+<%= line_chart @statuses.pluck(:collected_at, :carbon_monoxide), xmin: @min_date, xmax: @max_date, xtitle: 'Time', ytitle: 'Carbon Monoxide Level' %>
 
 <table>
   <thead>
@@ -33,7 +34,7 @@
   </thead>
 
   <tbody>
-  <% @device.statuses.each do |status| %>
+  <% @statuses.each do |status| %>
       <tr>
         <td><%= status.temperature %></td>
         <td><%= status.air_humidity %></td>

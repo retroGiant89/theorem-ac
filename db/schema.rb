@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2020_01_09_152852) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -34,7 +37,7 @@ ActiveRecord::Schema.define(version: 2020_01_09_152852) do
     t.datetime "invitation_accepted_at"
     t.integer "invitation_limit"
     t.string "invited_by_type"
-    t.integer "invited_by_id"
+    t.bigint "invited_by_id"
     t.integer "invitations_count", default: 0
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["invitation_token"], name: "index_admins_on_invitation_token", unique: true
@@ -57,7 +60,7 @@ ActiveRecord::Schema.define(version: 2020_01_09_152852) do
     t.integer "carbon_monoxide"
     t.string "health_status"
     t.datetime "collected_at"
-    t.integer "device_id", null: false
+    t.bigint "device_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["device_id"], name: "index_statuses_on_device_id"
