@@ -14,6 +14,12 @@
   <strong>Firmware version:</strong>
   <%= @device.firmware_version %>
 </p>
+<h2>Temperature</h2>
+<%= line_chart @device.statuses.pluck(:collected_at, :temperature), xmin: @xmin, xmax: @xmax, xtitle: 'Time', ytitle: 'Temperature (in Celcius)' %>
+<h2>Air Humidity</h2>
+<%= line_chart @device.statuses.pluck(:collected_at, :air_humidity), xmin: @xmin, xmax: @xmax, xtitle: 'Time', ytitle: 'Air Humidity Percentage' %>
+<h2>Carbon Monoxide</h2>
+<%= line_chart @device.statuses.pluck(:collected_at, :carbon_monoxide), xmin: @xmin, xmax: @xmax, xtitle: 'Time', ytitle: 'Carbon Monoxide Level' %>
 
 <table>
   <thead>
@@ -39,5 +45,5 @@
   </tbody>
 </table>
 
-<%= link_to 'Edit', edit_device_path(@device) %> |
+
 <%= link_to 'Back', devices_path %>

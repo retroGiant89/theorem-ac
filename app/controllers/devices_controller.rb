@@ -18,6 +18,8 @@ class DevicesController < ApplicationController
   # GET /devices/1
   # GET /devices/1.json
   def show
+    @xmin = Date.today.beginning_of_day
+    @xmax = Date.today.end_of_day
   end
 
   # GET /devices/new
