@@ -1,50 +1,69 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Serial number:</strong>
-  <%= @device.serial_number %>
-</p>
+<h1><%= @device.serial_number %></h1>
 
 <p>
   <strong>Registration Date:</strong>
-  <%= @device.created_at %>
+  <%= @device.created_at.to_date %>
 </p>
 
 <p>
   <strong>Firmware version:</strong>
   <%= @device.firmware_version %>
 </p>
-Display Current: <%= link_to 'Year', @device, {time_range: 'YEAR'} %>
-<h2>Temperature</h2>
-<%= line_chart @statuses.pluck(:collected_at, :temperature), xmin: @min_date, xmax: @max_date, xtitle: 'Time', ytitle: 'Temperature (in Celcius)' %>
-<h2>Air Humidity</h2>
-<%= line_chart @statuses.pluck(:collected_at, :air_humidity), xmin: @min_date, xmax: @max_date, xtitle: 'Time', ytitle: 'Air Humidity Percentage' %>
-<h2>Carbon Monoxide</h2>
-<%= line_chart @statuses.pluck(:collected_at, :carbon_monoxide), xmin: @min_date, xmax: @max_date, xtitle: 'Time', ytitle: 'Carbon Monoxide Level' %>
+Display Current: <%= link_to 'Day', device_path(@device, time_range: 'DAY') %> |
+<%= link_to 'Week', device_path(@device, time_range: 'WEEK') %> |
+<%= link_to 'Month', device_path(@device, time_range: 'MONTH') %> |
+<%= link_to 'Year', device_path(@device, time_range: 'YEAR') %>
+<% if @statuses.present? %>
+  <h2>Sensor Graphs</h2>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6">
+          <h3>Temperature</h3>
+          <%= line_chart @statuses.pluck(:collected_at, :temperature), xmin: @min_date, xmax: @max_date, xtitle: 'Time', ytitle: 'Temperature (in Celcius)' %>
+        </div>
+        <div class="col-sm-6">
+          <h3>Air Humidity</h3>
+          <%= line_chart @statuses.pluck(:collected_at, :air_humidity), xmin: @min_date, xmax: @max_date, xtitle: 'Time', ytitle: 'Air Humidity Percentage' %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <h3>Carbon Monoxide</h3>
+          <%= line_chart @statuses.pluck(:collected_at, :carbon_monoxide), xmin: @min_date, xmax: @max_date, xtitle: 'Time', ytitle: 'Carbon Monoxide Level' %>
 
-<table>
-  <thead>
-  <tr>
-    <th>Temperature</th>
-    <th>Air humidity</th>
-    <th>Carbon monoxide</th>
-    <th>Health status</th>
-    <th>Collected at</th>
-  </tr>
-  </thead>
+        </div>
+      </div>
+    </div>
+  <h2>Raw Data</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Temperature</th>
+          <th>Air humidity</th>
+          <th>Carbon monoxide</th>
+          <th>Health status</th>
+          <th>Collected at</th>
+        </tr>
+      </thead>
 
-  <tbody>
-  <% @statuses.each do |status| %>
-      <tr>
-        <td><%= status.temperature %></td>
-        <td><%= status.air_humidity %></td>
-        <td><%= status.carbon_monoxide %></td>
-        <td><%= status.health_status %></td>
-        <td><%= status.collected_at %></td>
-      </tr>
-  <% end %>
-  </tbody>
-</table>
+      <tbody>
+      <% @statuses.each do |status| %>
+        <tr>
+          <td><%= status.temperature %></td>
+          <td><%= status.air_humidity %></td>
+          <td><%= status.carbon_monoxide %></td>
+          <td><%= status.health_status %></td>
+          <td><%= status.collected_at %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
 
-
+<% else %>
+    <div class="alert alert-warning" role="alert">
+      This device has not reported any statuses for the selected time range.
+    </div>
+<% end %>
 <%= link_to 'Back', devices_path %>

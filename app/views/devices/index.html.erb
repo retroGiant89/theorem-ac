@@ -2,20 +2,14 @@
 
 <h1>Devices</h1>
 
-<%= form_tag(devices_path, method: :get) do %>
-    <div>
-      <%= label_tag(:serial_number) %>
-    <%= text_field_tag(:serial_number) %>
-    </div>
-    <%= submit_tag 'Search' %>
-<% end %>
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Serial number</th>
       <th>Registration Date</th>
       <th>Firmware version</th>
-      <th colspan="3"></th>
+      <th>Statuses</th>
+      <!--<th colspan="3"></th>-->
     </tr>
   </thead>
 
@@ -25,9 +19,10 @@
         <td><%= device.serial_number %></td>
         <td><%= device.created_at %></td>
         <td><%= device.firmware_version %></td>
-        <td><%= link_to 'Show', device %></td>
+        <td><%= link_to 'Statuses', device %></td>
+        <!--<td><%= link_to 'Show', device %></td>
         <td><%= link_to 'Edit', edit_device_path(device) %></td>
-        <td><%= link_to 'Destroy', device, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', device, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
       </tr>
     <% end %>
   </tbody>
