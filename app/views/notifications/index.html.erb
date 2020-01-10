@@ -1,0 +1,23 @@
+<p id="notice"></p>
+
+<h1>Notifications</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Device</th>
+      <th>Message</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @notifications.each do |notification| %>
+      <tr class="table-<%= notification.level %>">
+        <td><%= link_to notification.device.serial_number, notification.device %></td>
+        <td><%= notification.message %></td>
+        <td><%= link_to 'Dismiss', notification, method: :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

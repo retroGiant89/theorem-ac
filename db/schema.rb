@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_10_125303) do
+ActiveRecord::Schema.define(version: 2020_01_10_172558) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,16 @@ ActiveRecord::Schema.define(version: 2020_01_10_125303) do
     t.string "token"
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.integer "level"
+    t.string "message"
+    t.boolean "dismissed", default: false, null: false
+    t.bigint "status_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["status_id"], name: "index_notifications_on_status_id"
+  end
+
   create_table "statuses", force: :cascade do |t|
     t.float "temperature"
     t.float "air_humidity"
@@ -67,5 +77,6 @@ ActiveRecord::Schema.define(version: 2020_01_10_125303) do
     t.index ["device_id"], name: "index_statuses_on_device_id"
   end
 
+  add_foreign_key "notifications", "statuses"
   add_foreign_key "statuses", "devices"
 end

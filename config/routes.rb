@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   devise_for :admins
   resources :devices
   resources :admins, except: [:new, :create]
+  resources :notifications, only: [:index, :destroy]
   root to: 'devices#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
