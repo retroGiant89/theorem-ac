@@ -5,6 +5,7 @@
 <table class="table">
   <thead>
     <tr>
+      <th>Time</th>
       <th>Device</th>
       <th>Message</th>
       <th></th>
@@ -14,6 +15,7 @@
   <tbody>
     <% @notifications.each do |notification| %>
       <tr class="table-<%= notification.level %>">
+        <td><%= notification.status.collected_at %></td>
         <td><%= link_to notification.device.serial_number, notification.device %></td>
         <td><%= notification.message %></td>
         <td><%= link_to 'Dismiss', notification, method: :delete %></td>
