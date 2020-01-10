@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :statuses
+  resources :statuses do
+    post 'bulk_create', on: :collection
+  end
   devise_for :admins
   resources :devices
   resources :admins, except: [:new, :create]
