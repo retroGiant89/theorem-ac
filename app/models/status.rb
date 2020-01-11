@@ -2,7 +2,7 @@ class Status < ApplicationRecord
   belongs_to :device
   has_many :notifications
 
-  validate :collected_at, presence: true
+  validates :collected_at, presence: true
 
   after_create :generate_notifications
 
