@@ -7,20 +7,16 @@
       <th>Registration Date</th>
       <th>Firmware version</th>
       <th></th>
-      <!--<th colspan="3"></th>-->
     </tr>
   </thead>
 
   <tbody>
     <% @devices.each do |device| %>
       <tr>
-        <td><%= device.serial_number %></td>
-        <td><%= device.created_at %></td>
+        <td><%= link_to device.serial_number, device %></td>
+        <td><%= device.created_at.to_date %></td>
         <td><%= device.firmware_version %></td>
         <td><%= link_to 'Statuses', device %></td>
-        <!--<td><%= link_to 'Show', device %></td>
-        <td><%= link_to 'Edit', edit_device_path(device) %></td>
-        <td><%= link_to 'Destroy', device, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
       </tr>
     <% end %>
   </tbody>

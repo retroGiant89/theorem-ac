@@ -2,7 +2,7 @@ class DevicesController < ApplicationController
   before_action :authenticate_admin!, except: :create
   skip_before_action :verify_authenticity_token, only: :create
 
-  before_action :set_device, only: [:show, :edit, :update, :destroy]
+  before_action :set_device, only: :show
 
   # GET /devices
   # GET /devices.json
@@ -37,15 +37,6 @@ class DevicesController < ApplicationController
     @statuses = @device.statuses.where(collected_at: @min_date..@max_date)
   end
 
-  # GET /devices/new
-  def new
-    @device = Device.new
-  end
-
-  # GET /devices/1/edit
-  def edit
-  end
-
   # POST /devices
   # POST /devices.json
   def create
@@ -59,30 +50,6 @@ class DevicesController < ApplicationController
         format.html { render :new }
         format.json { render json: @device.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # PATCH/PUT /devices/1
-  # PATCH/PUT /devices/1.json
-  def update
-    respond_to do |format|
-      if @device.update(device_params)
-        format.html { redirect_to @device, notice: 'Device was successfully updated.' }
-        format.json { render :show, status: :ok, location: @device }
-      else
-        format.html { render :edit }
-        format.json { render json: @device.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /devices/1
-  # DELETE /devices/1.json
-  def destroy
-    @device.destroy
-    respond_to do |format|
-      format.html { redirect_to devices_url, notice: 'Device was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 

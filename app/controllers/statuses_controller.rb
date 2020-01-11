@@ -2,22 +2,10 @@ class StatusesController < ApplicationController
 
   skip_before_action :verify_authenticity_token, only: [:create, :bulk_create]
 
-  before_action :set_device, only: [:create, :index]
+  before_action :set_device, only: :create
   before_action :set_token, only: [:create, :bulk_create]
 
   before_action :verify_device_token, only: :create
-
-  # GET /statuses
-  # GET /statuses.json
-  def index
-    @statuses = Status.all
-  end
-
-  # GET /statuses/1
-  # GET /statuses/1.json
-  #def show
-  #  @status = Status.find(params[:id])
-  #end
 
   # POST /statuses
   # POST /statuses.json
