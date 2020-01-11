@@ -28,17 +28,20 @@ A device can send a status which represents a set of sensor readings and a healt
 * Headers:
     * `Content-Type: application/json`
     * `Authorization: Bearer TOKEN` - replace token with your id
-* Body Example: ```{
-         	"status":
-         	{
-         		"device_id": "ID",
-         		"air_humidity": "40",
-         		"temperature": "60",
-         		"carbon_monoxide":"8",
-         		"health_status": "needs_new_filter",
-         		"collected_at": "2020-01-09 17:10:31 UTC"
-         	}
-         }```
+* Body Example: 
+```
+{
+    "status":
+    {
+        "device_id": "ID",
+        "air_humidity": "40",
+        "temperature": "60",
+        "carbon_monoxide":"8",
+        "health_status": "needs_new_filter",
+        "collected_at": "2020-01-09 17:10:31 UTC"
+    }
+ }
+```
          
 * Status attributes:
     * `temperature `: Temperature in Celsius.
@@ -54,7 +57,8 @@ When a device has been unable to reach the server for a time, it may be necessar
 * Headers:
     * `Content-Type: application/json`
     * `Authorization: Bearer TOKEN` - replace token with your id
-* Body Example: ```
+* Body Example: 
+```
            {
            	"device_id": "ID",
            	"statuses":
@@ -77,6 +81,6 @@ When a device has been unable to reach the server for a time, it may be necessar
            	}
            	]
            	}
-           	```
+```
 
 
