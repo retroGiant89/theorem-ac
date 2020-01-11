@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :statuses, only: :create do
+  resources :statuses, only: [:create, :show] do
     post 'bulk_create', on: :collection
   end
   devise_for :admins
