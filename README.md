@@ -8,6 +8,16 @@ Backend system which integrates with air conditioning units and provides an admi
 1. `rake db:migrate`
 1. `rails s`
 
+
+## Further work needed
+* Testing
+* Login page styling
+* Real token auth for devices
+* Device Uniqueness by serial number
+* Send notifications via email
+* Browser Notifcations
+* Pagination for listing pages
+
 ## API Documentation
 
 The API is on the same url as the admin, production can be found here: https://theorem-ac.herokuapp.com/
