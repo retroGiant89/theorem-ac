@@ -9,7 +9,7 @@
     "chart.js": "^2.9.3",
     "chartkick": "^3.2.0",
     "turbolinks": "^5.2.0",
-    "yarn": "^1.21.1"
+    "yarn": "^1.22.0"
   },
   "version": "0.1.0",
   "devDependencies": {
